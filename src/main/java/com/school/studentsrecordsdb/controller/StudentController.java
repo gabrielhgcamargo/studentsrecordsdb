@@ -21,6 +21,8 @@ import com.school.studentsrecordsdb.repository.StudentRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping(value = "/school")
@@ -39,6 +41,10 @@ public class StudentController {
 
     @GetMapping("/student/{id}")
     @ApiOperation(value = "Find a student by ID.")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Student found."),
+        @ApiResponse(code = 404, message = "Student not found with this ID."),
+    })
     public Student getStudentById(@PathVariable(value = "id") Integer id){
         return studentRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
         "Student not found with this ID."));
@@ -47,6 +53,10 @@ public class StudentController {
     @PostMapping("/student")
     @ApiOperation(value = "Create a student.")
     @ResponseStatus(HttpStatus.CREATED)
+        @ApiResponses({
+            @ApiResponse(code = 201, message = "Student created."),
+            @ApiResponse(code = 400, message = "Bad request error. One or more fields in the request contain incorrect data types. Check the example value.")
+    })
     public Student createStudent(@RequestBody Student student){
         return studentRepository.save(student);
     }
@@ -54,6 +64,10 @@ public class StudentController {
     @DeleteMapping("/student/{id}")
     @ApiOperation(value = "Delete a Student by ID.")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+        @ApiResponses({
+        @ApiResponse(code = 204, message = "Student deleted."),
+        @ApiResponse(code = 404, message = "Student not found with this ID."),
+    })
     public void deleteStudentById(@PathVariable(value = "id") Integer id){
          studentRepository.findById(id).map(student -> {
             studentRepository.deleteById(id);
@@ -65,6 +79,10 @@ public class StudentController {
     
     @PutMapping("/student/{id}")
     @ApiOperation(value = "Update a Student by ID.")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Student updated."),
+        @ApiResponse(code = 404, message = "Student not found with this ID."),
+    })
     public Student updateStudentById(@PathVariable(value = "id") Integer id, @RequestBody Student student){
          return studentRepository.findById(id).map(student1 -> {
             student.setId(student1.getId());

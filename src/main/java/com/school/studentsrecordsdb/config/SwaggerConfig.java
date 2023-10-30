@@ -27,8 +27,9 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.school.studentsrecordsdb"))
                 .paths(regex("/school.*"))
                 .build()
-                .apiInfo(metaInfo());
-    }
+                .apiInfo(metaInfo())
+                .useDefaultResponseMessages(false);
+               }
 
     private ApiInfo metaInfo() {
 
