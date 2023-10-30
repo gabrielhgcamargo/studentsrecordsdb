@@ -28,7 +28,7 @@ public class Student implements Serializable{
     @ApiModelProperty(example = "9.2")
     private Double firstSemesterGrade;
 
-    @ApiModelProperty(example = "7,45")
+    @ApiModelProperty(example = "7.45")
     private Double secondSemesterGrade;
 
      @ApiModelProperty(example = "Maria Dias")
