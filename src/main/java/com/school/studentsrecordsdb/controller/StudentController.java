@@ -88,6 +88,7 @@ public class StudentController {
     @ApiResponses({
         @ApiResponse(code = 200, message = "Student updated."),
         @ApiResponse(code = 404, message = "Student not found with this ID."),
+        @ApiResponse(code = 400, message = "Bad request error. One or more fields in the request contain incorrect data types. Check the example value.")
     })
     public Student updateStudentById(@PathVariable(value = "id") Integer id, @RequestBody Student student){
          return studentRepository.findById(id).map(student1 -> {
