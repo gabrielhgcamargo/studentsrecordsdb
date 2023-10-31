@@ -23,10 +23,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping(value = "/school")
-@Api(value = "API REST -> Students")
+@Tag(name = "student", description = "Operations about student")
 @CrossOrigin(origins = "*")
 public class StudentController {
     
@@ -34,13 +35,15 @@ public class StudentController {
     StudentRepository studentRepository;
 
     @GetMapping("/students")
+    @Tag(name = "student")
     @ApiOperation(value = "List all students.")
     public List<Student> findAllStudents(){
         return studentRepository.findAll();
     }
 
     @GetMapping("/student/{id}")
-    @ApiOperation(value = "Find a student by ID.")
+    @Tag(name = "student")
+    @ApiOperation(value = "Find student by ID.")
     @ApiResponses({
         @ApiResponse(code = 200, message = "Student found."),
         @ApiResponse(code = 404, message = "Student not found with this ID."),
@@ -51,7 +54,8 @@ public class StudentController {
     }
 
     @PostMapping("/student")
-    @ApiOperation(value = "Create a student.")
+    @Tag(name = "student")
+    @ApiOperation(value = "Add a new student.")
     @ResponseStatus(HttpStatus.CREATED)
         @ApiResponses({
             @ApiResponse(code = 201, message = "Student created."),
@@ -63,6 +67,7 @@ public class StudentController {
 
     @DeleteMapping("/student/{id}")
     @ApiOperation(value = "Delete a Student by ID.")
+    @Tag(name = "student")
     @ResponseStatus(HttpStatus.NO_CONTENT)
         @ApiResponses({
         @ApiResponse(code = 204, message = "Student deleted."),
@@ -78,7 +83,8 @@ public class StudentController {
 
     
     @PutMapping("/student/{id}")
-    @ApiOperation(value = "Update a Student by ID.")
+    @Tag(name = "student")
+    @ApiOperation(value = "Update an existing Student by ID.")
     @ApiResponses({
         @ApiResponse(code = 200, message = "Student updated."),
         @ApiResponse(code = 404, message = "Student not found with this ID."),

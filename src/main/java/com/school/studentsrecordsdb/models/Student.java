@@ -12,29 +12,30 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "TB_STUDENT")
-@ApiModel("Class representing a student.")
+@ApiModel("Student")
 public class Student implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty(example = "0", position = 1)
     private Integer id;
     
-    @ApiModelProperty(example = "Jonas Hutcherson")
+    @ApiModelProperty(example = "Jonas Hutcherson", position = 2)
     private String name;
 
-    @ApiModelProperty(example = "16")
+    @ApiModelProperty(example = "16", position = 3)
     private Integer age;
 
-    @ApiModelProperty(example = "9.2")
+    @ApiModelProperty(example = "9.2", position = 4)
     private Double firstSemesterGrade;
 
-    @ApiModelProperty(example = "7.45")
+    @ApiModelProperty(example = "7.45", position = 5)
     private Double secondSemesterGrade;
 
-     @ApiModelProperty(example = "Maria Dias")
+     @ApiModelProperty(example = "Maria Dias", position = 6)
     private String teacherName;
 
-    @ApiModelProperty(example = "27")
+    @ApiModelProperty(example = "27", position = 7)
     private Integer classroomNumber;
 
     
